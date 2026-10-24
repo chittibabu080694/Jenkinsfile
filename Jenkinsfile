@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-username/your-repo.git'
+                git branch: 'main', url: 'https://github.com/chittibabu080694/Jenkinsfile.git'
             }
         }
         stage('Build Docker Image') {
@@ -22,7 +22,6 @@ pipeline {
         stage('Push to AWS ECR') {
             steps {
                 script {
-                    // Authenticate and push to AWS ECR using stored Jenkins credentials
                     withCredentials([usernamePassword(credentialsId: 'aws-ecr-credentials', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                         sh "aws configure set aws_access_key_id ${AWS_ACCESS_KEY_ID}"
                         sh "aws configure set aws_secret_access_key ${AWS_SECRET_ACCESS_KEY}"
