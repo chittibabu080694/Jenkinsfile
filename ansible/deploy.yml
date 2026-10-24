@@ -9,4 +9,4 @@
         replace: "{{ image_tag }}"
 
     - name: Apply Kubernetes Deployment
-      command: kubectl apply -f ../k8s/deployment.yml
+      command: kubectl apply -f ../k8s/deployment.yml --validate=false
