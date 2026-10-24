@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Update Image Tag in Kubernetes Manifest
+      replace:
+        path: "../k8s/deployment.yml"
+        regexp: '__IMAGE_TAG__'
+        replace: "{{ image_tag }}"
+
+    - name: Apply Kubernetes Deployment
+      command: kubectl apply -f ../k8s/deployment.yml
